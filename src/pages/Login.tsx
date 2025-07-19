@@ -24,7 +24,7 @@ export default function Login({ onLogin }: LoginProps) {
   return (
     <div className="min-h-screen flex bg-[#eceaea] text-white">
       {/* Lado da imagem */}
-      <div className="hidden md:flex flex-col justify-center items-center bg-[#7534b1] w-1/2 p-8 rounded-r-3xl shadow-lg">
+      <div className="hidden md:flex flex-col justify-center items-center bg-[#8EA8E4] w-1/2 p-8 rounded-r-3xl shadow-lg">
         <img
           src="/car.svg"
           alt="Carrinho 3D"
