@@ -52,7 +52,7 @@ export function GraficoVendasPorDia({ clientes }: Props) {
         <XAxis dataKey="data" />
         <YAxis />
         <Tooltip formatter={(value: number) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} />
-        <Line type="monotone" dataKey="valor" stroke="#8884d8" strokeWidth={2} />
+        <Line type="monotone" dataKey="valor" stroke="#ffff" strokeWidth={2} />
       </LineChart>
     </ResponsiveContainer>
   );

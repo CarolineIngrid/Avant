@@ -6,6 +6,7 @@ import FormCliente from "./components/FormCliente";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import { GraficoVendasPorDia } from "./components/GraficoVendasPorDias";
+import "./App.css";
 
 import { 
   clienteMaiorVolume, 
@@ -62,22 +63,25 @@ function App() {
 };
 
 
- return (
-    <>
-      <Navbar onLogout={handleLogout} />
-      <div className="p-4 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Clientes</h1>
+return (
+  <>
+    <Navbar onLogout={handleLogout} />
+    <main className="p-6 max-w-5xl mx-auto">
+      <h1 className="text-3xl font-bold mb-8 text-center text-white">Preencha o Formulário:</h1>
 
+      <div className="mb-10 bg-white rounded-xl shadow p-6">
         <FormCliente onAdd={adicionarCliente} />
+      </div>
 
-        <table className="table-auto w-full border border-collapse">
+      <div className="overflow-x-auto rounded-xl shadow bg-white">
+        <table className="w-full text-left border-separate border-spacing-y-3">
           <thead>
-            <tr className="bg-gray-200">
-              <th className="p-2 border">Nome</th>
-              <th className="p-2 border">E-mail</th>
-              <th className="p-2 border">Nascimento</th>
-              <th className="p-2 border">Vendas</th>
-              <th className="p-2 border text-center">Letra Ausente</th>
+            <tr className="text-gray-500 uppercase text-xs font-semibold">
+              <th className="pl-6 py-3">Nome</th>
+              <th className="py-3">E-mail</th>
+              <th className="py-3">Nascimento</th>
+              <th className="py-3">Vendas</th>
+              <th className="py-3 pr-6 text-center">Letra Ausente</th>
             </tr>
           </thead>
           <tbody>
@@ -87,28 +91,41 @@ function App() {
               const destaqueFreq = c === maiorFrequencia;
               const letraFaltante = letraAusente(c.nome);
 
-              // Definindo a cor de fundo para destacar visualmente
               let bgColor = "";
               if (destaqueVolume) bgColor = "bg-green-100";
               else if (destaqueMedia) bgColor = "bg-yellow-100";
               else if (destaqueFreq) bgColor = "bg-blue-100";
 
               return (
-                <tr key={i} className={`${bgColor} border`}>
-                  <td className="p-2 border">{c.nome}</td>
-                  <td className="p-2 border">{c.email}</td>
-                  <td className="p-2 border">{c.nascimento}</td>
-                  <td className="p-2 border">{c.vendas.length}</td>
-                  <td className="p-2 border text-center font-bold">{letraFaltante}</td>
+                <tr
+                  key={i}
+                  className={`rounded-xl shadow-sm hover:shadow-md transition-shadow ${bgColor}`}
+                >
+                  <td className="py-3 px-6 text-gray-800 font-semibold rounded-l-xl">
+                    {c.nome}
+                  </td>
+                  <td className="py-3 px-4 text-gray-600">{c.email}</td>
+                  <td className="py-3 px-4 text-gray-600">{c.nascimento}</td>
+                  <td className="py-3 px-4 text-gray-700">{c.vendas.length}</td>
+                  <td className="py-3 px-4 text-center rounded-r-xl">
+                    <span className="inline-block px-3 py-1 rounded-full bg-gray-200 text-sm font-bold text-gray-700">
+                      {letraFaltante}
+                    </span>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      </div>
 
+      <div className="mt-12">
         <GraficoVendasPorDia clientes={clientes} />
       </div>
-    </>
-  );
+    </main>
+  </>
+);
+
+  
 }
 export default App;

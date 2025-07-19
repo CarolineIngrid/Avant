@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,20 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+body {
+  /* background-image: url('/Dashboard.svg'); */
+  background-image: url('/te.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* opcional: sobreposição para suavizar */
+.bg-overlay {
+  background-color: rgba(255, 255, 255, 0.85); /* ajustável para tema claro ou escuro */
+  backdrop-filter: blur(4px); /* efeito suave */
 }
