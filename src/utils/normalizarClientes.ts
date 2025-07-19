@@ -4,12 +4,19 @@ import type { ClienteNormalizado } from "../types/Cliente";
 export function normalizarClientes(raw: any): ClienteNormalizado[] {
   const clientes: ClienteOriginal[] = raw?.data?.clientes || [];
 
-  return clientes.map((cliente) => {
+  const normalizados: ClienteNormalizado[] = clientes.map((cliente) => {
+    const nome = cliente.info?.nomeCompleto || cliente.duplicado?.nomeCompleto || "Nome não informado";
+    const email = cliente.info?.detalhes?.email || "Email não informado";
+    const nascimento = cliente.info?.detalhes?.nascimento || "Data não informada";
+    const vendas = Array.isArray(cliente.estatisticas?.vendas) ? cliente.estatisticas.vendas : [];
+
     return {
-      nome: cliente.info?.nomeCompleto || cliente.duplicado?.nomeCompleto || "Nome não informado",
-      email: cliente.info?.detalhes?.email || "Email não informado",
-      nascimento: cliente.info?.detalhes?.nascimento || "Data não informada",
-      vendas: cliente.estatisticas?.vendas || [],
+      nome,
+      email,
+      nascimento,
+      vendas,
     };
   });
+
+  return normalizados;
 }

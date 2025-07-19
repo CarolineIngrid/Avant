@@ -23,5 +23,8 @@ export type ClienteNormalizado = {
   nome: string;
   email: string;
   nascimento: string;
-  vendas: Venda[];
+  vendas: {
+    data: string;
+    valor: number;
+  }[];
 };
